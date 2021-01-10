@@ -1,0 +1,15 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.uss.service.StudentMapper">
+<delete id="truncate" parameterType="hashmap">${TRUNCATE_STUDENTS}</delete>
+<select id="count" resultType="int">${COUNT_STUDENTS}</select>
+<insert id="insert" parameterType="com.example.demo.uss.service.Student">
+	insert into students (userid, password, name, birthday, gender, reg_date, subject, profile_img)
+	values (#{userid}, #{password}, #{name}, #{birthday}, #{gender}, #{regDate}, #{subject}, #{profileImg})	
+</insert>
+<select id="selectAll" resultType="com.example.demo.uss.service.Student">
+	select stu_num stuNum, userid, password, name, birthday, gender, reg_date regDate, subject, profile_img profileImg
+	from students
+</select>
+</mapper>

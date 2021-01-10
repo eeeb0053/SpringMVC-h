@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.sym.service.TeacherMapper">
+<insert id="insert" parameterType="com.example.demo.sym.service.Teacher">
+insert into teachers (name, password, subject)
+values (#{name}, #{password}, #{subject})
+</insert>
+<select id="access" resultType="com.example.demo.sym.service.Teacher"
+				   parameterType="com.example.demo.sym.service.Teacher">
+    select tea_num teaNum, name, email, password, subject, profile_img profileImg
+    from teachers 
+    where email like #{email} and password like #{password}
+</select>
+<select id="selectAll" resultType="com.example.demo.sym.service.Teacher">
+select tea_num teaNum, name, email, password, subject, profile_img profileImg
+from teachers
+</select>
+<select id="selectById" resultType="com.example.demo.sym.service.Teacher"
+                        parameterType="string">
+select tea_num teaNum, name, email, password, subject, profile_img profileImg
+from teachers
+where tea_num like #{value}
+</select>
+<update id="update" parameterType="com.example.demo.sym.service.Teacher">
+update teachers set email = #{email}, subject = #{subject}
+where tea_num like #{teaNum}
+</update>
+<delete id="delete" parameterType="com.example.demo.sym.service.Teacher">
+delete from teachers where tea_num like #{teaNum}
+</delete>
+</mapper>
