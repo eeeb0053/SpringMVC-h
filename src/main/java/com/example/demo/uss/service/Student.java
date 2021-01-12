@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Student{
-    private String stuNum, userid, password, name, birthday, gender, regDate, subject, profileImg;
+	private int stuNum;
+    private String userid, password, name, birthday, gender, regDate, subject, profileImg;
 }
 /*
 create table students(

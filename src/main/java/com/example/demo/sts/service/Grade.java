@@ -12,16 +12,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter @Setter @Component @AllArgsConstructor @Lazy @NoArgsConstructor
-public class Grade extends Student{
-    private String gradeNum, subject, score, grade, stuNum;
+public class Grade{
+    private String subject, grade, examDate, passExam;
+    private int stuNum, score, grdNum;
+    
+    public Grade(String subject, String examDate, int score) {
+    	this.subject = subject;
+    	this.examDate = examDate;
+    	this.score = score;
+    }
 }
 /*
-create table grades(
-	grade_num int primary key,
-	subject varchar2(20),
-	score varchar2(20),
-	grade varchar2(20),
+create table grades2(
+	grade_num int primary key auto_increment,
+	subject varchar(20),
+	score varchar(20),
+	grade varchar(20),
 	stu_num int,
+	exam_date varchar(20),
 	constraint grades_fk foreign key(stu_num) references students(stu_num) 
 	)
 */

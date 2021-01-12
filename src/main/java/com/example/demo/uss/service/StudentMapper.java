@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.cmm.utl.Pagination;
+
 @Repository
 public interface StudentMapper {
 	public int insert(Student student);
@@ -15,5 +17,6 @@ public interface StudentMapper {
 	public int delete(Student student);
 	public void truncate(HashMap<String, String> map);
 	public int count(HashMap<String, String> map);
-	public List<Student> selectAll(HashMap<String, String> map);
+	public List<Student> selectAll(Pagination page);
+	public List<Student> list();
 }

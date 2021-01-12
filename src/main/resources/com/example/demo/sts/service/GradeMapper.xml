@@ -2,4 +2,76 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.sts.service.GradeMapper">
+<!-- 
+	//Grade
+    private String subject, grade, examDate, passExam;
+    private int stuNum, score, gradeNum;
+    //Subject
+	private int subNum, teaNum;
+	private String desciption;
+	// Teacher
+    private String teaName, teaEmail, teaPassword, teaProfileImg;
+	// Student
+    private String userid, stuPassword, stuName, birthday, gender, regDate, stuProfileImg; 
+-->
+<resultMap type="com.example.demo.sts.service.GradeVo" id="gradeMap">
+	<id property="gradeNum" column="gradeNum"/>
+	<result property="score" column="score"/>
+	<result property="stuNum" column="stuNum"/>
+	<result property="subject" column="subject"/>
+	<result property="grade" column="grade"/>
+	<result property="examDate" column="examDate"/>
+	<result property="passExam" column="passExam"/>
+	<result property="subNum" column="subNum"/>
+	<result property="teaNum" column="teaNum"/>
+	<result property="desciption" column="desciption"/>
+	<result property="teaName" column="teaName"/>
+	<result property="teaEmail" column="teaEmail"/>
+	<result property="teaPassword" column="teaPassword"/>
+	<result property="teaProfileImg" column="teaProfileImg"/>
+	<result property="userid" column="userid"/>
+	<result property="stuPassword" column="stuPassword"/>
+	<result property="stuName" column="stuName"/>
+	<result property="birthday" column="birthday"/>
+	<result property="gender" column="gender"/>
+	<result property="regDate" column="regDate"/>
+	<result property="stuProfileImg" column="stuProfileImg"/>
+</resultMap>
+<insert id="insertMany" parameterType="list">
+	insert into grades
+	( subject, score, stu_num, exam_date )
+	values 
+	 <foreach item="i" collection="list" separator=",">
+        ( #{i.subject}, #{i.score}, 
+        #{i.stuNum}, #{i.examDate} )
+  	</foreach>
+</insert>
+<select id="selectJoinAll" resultMap="gradeMap">
+	select 
+		g.grade_num gradeNum, 
+		g.score score,
+		g.grade grade,
+		g.exam_date examDate,
+		g.pass_exam passExam,
+		j.sub_num subNum,
+		t.tea_num teaNum,
+		t.email teaEmail,
+		t.password teaPassword,
+		j.description description,
+		t.profile_img teaProfileImg,
+		t.name teaName,
+		s.userid userid,
+		s.password stuPassword,
+		s.name stuName,
+		s.birthday birthday,
+		s.gender gender,
+		s.reg_date regDate,
+		s.profile_img stuProfileImg,
+		s.stu_num stuNum,
+		s.subject subject
+	from students s
+		join teachers t on s.subject like t.subject
+		join subjects j on s.subject like j.subject
+		join grades g on s.subject like g.subject
+</select>
 </mapper>

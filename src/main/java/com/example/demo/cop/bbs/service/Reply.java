@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Reply extends Article{
-    private String replyNum, content, artNum;
+    private String repNum, content, artNum;
 }
 /*
 create table replies(

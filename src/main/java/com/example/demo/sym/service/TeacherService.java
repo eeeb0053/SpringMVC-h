@@ -1,32 +1,29 @@
 package com.example.demo.sym.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.cmm.utl.DummyGenerator;
+import com.example.demo.sts.service.Grade;
+
 @Service
 public class TeacherService{
     @Autowired TeacherMapper teacherMapper;
-
-    public int register(Teacher teacher) {
-        return teacherMapper.insert(teacher);
-    }
-
-    public List<?> list() {
-        return teacherMapper.selectAll();
-    }
-
-    public Teacher detail(String teaNum) {
-        return teacherMapper.selectById(teaNum);
-    }
-
-    public int update(Teacher teacher) {
-        return teacherMapper.update(teacher);
-    }
-
-    public int delete(Teacher teacher) {
-        return teacherMapper.delete(teacher);
-    }
+    @Autowired DummyGenerator dummy;
     
+    public void  insertMany() {
+    	var list = Arrays.asList("Java","Spring","Python","jQuery","eGovframe");
+    	var tlist = new ArrayList<Teacher>();
+    	Teacher t = null;
+    	for(int i = 0; i < list.size(); i++) {
+    		t = dummy.makeTeacher();
+    		t.setSubject(list.get(i));
+    		tlist.add(t);
+    	}
+    	teacherMapper.insertMany(tlist);
+    }
 }

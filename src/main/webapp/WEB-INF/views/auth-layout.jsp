@@ -28,7 +28,7 @@ li a {
   text-decoration: none;
 }
 li a.active {
-  background-color: #4CAF50;
+  background-color: #de878f;
   color: white;
 }
 li a:hover:not(.active) {
@@ -48,7 +48,7 @@ li a:hover:not(.active) {
 }
 .my-tab tr:nth-child(even){background-color: #f2f2f2}
 .my-tab th {
-  background-color: #4CAF50;
+  background-color: #de878f;
   color: white;
   text-align:center;
   border: 1px solid black
@@ -68,12 +68,12 @@ li a:hover:not(.active) {
 }
 
 .pagination a.active {
-  background-color: #4CAF50;
+  background-color: #de878f;
   color: white;
-  border: 1px solid #4CAF50;
+  border: 1px solid #ddd;
 }
 
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {background-color: #f0d1d1;}
 
 </style>
 </head>

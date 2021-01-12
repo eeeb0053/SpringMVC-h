@@ -5,10 +5,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.cmm.enm.Path;
+import com.example.demo.sts.service.Grade;
 import com.example.demo.sym.service.Manager;
 import com.example.demo.sym.service.Teacher;
 import com.example.demo.uss.service.Student;
@@ -17,7 +19,9 @@ import static com.example.demo.cmm.utl.Util.*;
 
 @Service("dummy")
 public class DummyGenerator {
-	
+	/*************************************
+	 * Student Dummy Data Generator
+	 *************************************/
 	/**
 	 * 1970 ~ 2000 사이의 랜덤한 연도수 뽑기 
 	 * 
@@ -120,26 +124,15 @@ public class DummyGenerator {
 		 Collections.shuffle(ls);
 		 return ls.get(0);
 	}
-	
+		
 	public String makeEmail() {
 		List<String> ls = Arrays.asList("@test.com","@gmail.com","@naver.com");
 		Collections.shuffle(ls);
 		return makeUserid()+ls.get(0);
 	}
-	public Manager makeManager() {
-		return new Manager("", makeEmail(), "1", makeUsername(), Path.DEFAULT_PROTFILE.toString());
-	}
-	public Teacher makeTeacher() {
-		return new Teacher("", 
-				makeUsername(), 
-				makeEmail(),
-				"1", 
-				makeSubject(), 
-				Path.DEFAULT_PROTFILE.toString()
-				);
-	}
+
 	public Student makeStudent() {
-		return new Student("",
+		return new Student(0,
 				makeUserid(), 
 				"1", 
 				makeUsername(), 
@@ -150,5 +143,39 @@ public class DummyGenerator {
 				Path.DEFAULT_PROTFILE.toString()
 				);
 	}
+
+	/*************************************
+	 * Grade Dummy Data Generator
+	 *************************************/
+	public List<Integer> makeScore(){
+		return Stream.generate(Math::random)
+				.limit(1).map(i -> (int)(i * 100))
+				.collect(Collectors.toList());
+	}
+	public Grade makeGrade() {
+		return new Grade(makeSubject(), makeExamdate(), makeScore().get(0));
+	}
+	public String makeExamdate() {
+		return "2020-11-30";
+	}
+
+	/*************************************
+	 * Teacher Dummy Data Generator
+	 *************************************/
+	public Teacher makeTeacher() {
+		return new Teacher("", 
+				makeUsername(), 
+				makeEmail(),
+				"1", 
+				"", 
+				Path.DEFAULT_PROTFILE.toString()
+				);
+	}
 	
+	/*************************************
+	 * Manager Dummy Data Generator
+	 *************************************/
+	public Manager makeManager() {
+		return new Manager("", makeEmail(), "1", makeUsername(), Path.DEFAULT_PROTFILE.toString());
+	}
 }
