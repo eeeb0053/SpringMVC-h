@@ -6,11 +6,12 @@
 <section id="data-mgt">
     <table class="my-tab" id="mgr-tab">
     	<tr>
-    		<th style="width: 30%">관리 항목</th><th>조회결과</th>
+    		<th style="width: 30%">관리 항목</th><th id="result-form">조회결과</th>
     	</tr>
     	<tr>
 			<td>학 생 (총 <span id="stu-count"></span> 명) <button id="mgr-generate-db">DB 초기화</button><br/><br/>
     			<input type="text" id="stu-data-count" placeholder="인원수 입력"/><button id="mgr-insert-many-stu">DB 생성</button><br/><br/>
+	    		<button id="grd-register">성적입력</button><br/><br/>
 	    		<input type="text" id="stu-data-update" placeholder="ID 입력"/><button>ID 검색</button><br/><br/>
 	    		<input type="text" id="stu-data-delete" placeholder="ID 입력"/><button>ID 삭제</button><br/><br/>
 	    		<input type="radio" name="stu-data-gender" value="M" checked="checked"/>남성
@@ -57,5 +58,6 @@ stu.count(`${ctx}`)
 stu.list({ctx: `${ctx}`, pageSize: `10`, pageNum: `1`})
 $(`#mgr-generate-db`).click(function(){ cmm.generateDB(`${ctx}`)})
 $(`#mgr-insert-many-stu`).click(function(){ stu.insertMany(`${ctx}`)})
+$(`#grd-register`).click(function(){ grd.register_form(`${ctx}`)})
 $(`#stu-data-birthday`).click(function(){ stu.birthday({ctx: `${ctx}`, pageSize: `10`, pageNum: `1`})})
 </script>

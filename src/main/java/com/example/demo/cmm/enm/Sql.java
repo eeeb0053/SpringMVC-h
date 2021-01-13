@@ -51,12 +51,12 @@ public enum Sql {
 	    	  break;
 	      case CREATE_GRADES:
 	    	  query = "create table grades(\n" + 
-	    	  		"	grade_num int primary key auto_increment,\n" + 
+	    	  		"	grd_num int primary key auto_increment,\n" + 
 	    	  		"	score varchar(20),\n" + 
 	    	  		"	grade varchar(20),\n" + 
+	    	  		"	exam_date varchar(20),\n" + 
 	    	  		"	stu_num int,\n" + 
 	    	  		"	sub_num int,\n" + 
-	    	  		"	exam_date varchar(20),\n" + 
 	    	  		"	constraint stu_grd_fk foreign key(stu_num) references students(stu_num),\n" + 
 	    	  		"   constraint sub_grd_fk foreign key(sub_num) references subjects(sub_num)\n" + 
 	    	  		"	)";

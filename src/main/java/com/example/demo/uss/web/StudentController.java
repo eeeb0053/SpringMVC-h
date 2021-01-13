@@ -61,17 +61,17 @@ public class StudentController {
     @GetMapping("/insert-many/{count}")
     public String insertMany(@PathVariable String count){
     	logger.info(String.format("=========== Insert %s Students..", count));
-    	var map = new HashMap<String, String>();
-    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString()+Table.STUDENTS);
+    	var map = new HashMap<String, Object>();
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString() + Table.STUDENTS);
     	if(commonMapper.totalCount(map) == 0) {
     		managerService.insertMany(1);
         	subjectService.insertMany();
         	studentService.insertMany(Integer.parseInt(count));
         	teacherService.insertMany(5);
-        	// gradeService.insertMany(Integer.parseInt(count));
+        	//gradeService.insertMany(Integer.parseInt(count)); 나중에 추가함
     	}
     	map.clear();
-    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString()+Table.STUDENTS);
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString() + Table.STUDENTS);
     	return string.apply(commonMapper.totalCount(map));
     }
     

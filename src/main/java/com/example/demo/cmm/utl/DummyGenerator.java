@@ -154,8 +154,8 @@ public class DummyGenerator {
 				.limit(1).map(i -> (int)(i * 100))
 				.collect(Collectors.toList());
 	}
-	public Grade makeGrade(int stuNum) {
-		return new Grade(stuNum, makeSubNum(), makeExamdate(), makeScore().get(0));
+	public Grade makeGrade(int stuNum, int subNum) {
+		return new Grade(stuNum, subNum, makeExamdate(), makeScore().get(0));
 	}
 	public String makeExamdate() {
 		return "2020-11-30";
