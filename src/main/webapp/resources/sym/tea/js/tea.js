@@ -1,22 +1,22 @@
-var mgr = mgr || {}
-mgr.access = x => {
+var tea = tea || {}
+tea.access = x => {
 	$.ajax({
-		url: `${x}/managers/access`,
+		url: `${x}/teachers/access`,
 		type: `post`,
-		data: JSON.stringify({email: $(`#uid`).val(), password:$(`#pwd`).val()}),
+		data: JSON.stringify({email: $(`#tid`).val(), password:$(`#tpwd`).val()}),
 		dataType: 'json',
 		contentType: 'application/json',
 		success: d => {
-			location.href = `${x}/mgr/index`
+			location.href = `${x}/tea/index`
 		},
 		error: e => {
 			alert(`Fail`)
 		}
 	})
 } 
-mgr.register = x => {
+tea.register = x => {
 	$.ajax({
-          url: `${x}/managers`,
+          url: `${x}/teachers`,
           type: 'POST',
           data: JSON.stringify({
               email: $('#email').val(),
@@ -25,7 +25,7 @@ mgr.register = x => {
           dataType: 'json',
           contentType: 'application/json',
           success: d => {
-             location.href='/transfer/sym/mgr/index'
+             location.href='/transfer/sym/tea/index'
           },
           error: e => {
               console.log(`관리자등록 실패: ${e.responseText}`)

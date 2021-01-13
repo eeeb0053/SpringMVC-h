@@ -14,13 +14,7 @@
         <div class="panel-heading">
           <h1>학 생</h1>
         </div>
-        <div class="panel-body">
-          <p><strong>20</strong> Lorem</p>
-          <p><strong>15</strong> Ipsum</p>
-          <p><strong>5</strong> Dolor</p>
-          <p><strong>2</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
+
         <div class="panel-footer">
           <button id="stu-join-btn" class="btn btn-lg">Sign Up</button>
           <button id="stu-login-btn" class="btn btn-lg">Sign In</button>
@@ -32,13 +26,7 @@
         <div class="panel-heading">
           <h1>교강사</h1>
         </div>
-        <div class="panel-body">
-          <p><strong>50</strong> Lorem</p>
-          <p><strong>25</strong> Ipsum</p>
-          <p><strong>10</strong> Dolor</p>
-          <p><strong>5</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
+
         <div class="panel-footer">
           <button id="tea-join-btn" class="btn btn-lg">Sign Up</button>
           <button id="tea-login-btn" class="btn btn-lg">Sign In</button>
@@ -50,13 +38,7 @@
         <div class="panel-heading">
           <h1>관리자</h1>
         </div>
-        <div class="panel-body">
-          <p><strong>100</strong> Lorem</p>
-          <p><strong>50</strong> Ipsum</p>
-          <p><strong>25</strong> Dolor</p>
-          <p><strong>10</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
+
         <div class="panel-footer">
           <button id="mgr-join-btn" class="btn btn-lg">Sign Up</button>
           <button id="mgr-login-btn" class="btn btn-lg">Sign In</button>
@@ -68,5 +50,8 @@
 <script>
 $(`#mgr-login-btn`).click(function(){
 	location.href = `${ctx}/admin/mgr/access`
+})
+$(`#tea-login-btn`).click(function(){
+	location.href = `${ctx}/admin/tea/access`
 })
 </script>

@@ -43,7 +43,6 @@ public enum Sql {
 	    	  		"	name varchar(20),\n" + 
 	    	  		"	email varchar(20),\n" + 
 	    	  		"	password varchar(20),\n" + 
-	    	  		"	subject varchar(20),\n" + 
 	    	  		"	profile_img varchar(200),\n" + 
 	    	  		"	sub_num int\n," + 
 	    	  		"	constraint sub_tea_fk foreign key(sub_num) references subjects(sub_num)\n" + 

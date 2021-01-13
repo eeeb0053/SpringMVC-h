@@ -63,6 +63,14 @@ public class HomeController {
         return String.format("mgr:%s", page);
     }
     /*
+     * sym (System Manager) 디렉토리 이동시 admin 사용
+     * */
+    @GetMapping("/tea/{page}") 
+    public String teacher(@PathVariable String page) {
+        logger.info("이동 파일: " + page);
+        return String.format("tea:%s", page);
+    }
+    /*
      * cop (Content Operater) 디렉토리 이동시 content 사용
      * */
     @GetMapping("/content/{dir}/{page}") 

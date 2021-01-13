@@ -14,11 +14,15 @@ public class GradeService{
     @Autowired GradeMapper gradeMapper;
     @Autowired DummyGenerator dummy;
     
-    public void  insertMany() {
+    public void insertMany() {
     	for(int i = 1; i <= 100; i++) {
     		for(int j = 1; j <= 5; j++) {
     			gradeMapper.insert(dummy.makeGrade(i, j));
     		}
     	}
+    }
+    
+    public List<GradeVo> selectAllforExam(String examDate){
+    	return gradeMapper.selectJoinAll(examDate);
     }
 }

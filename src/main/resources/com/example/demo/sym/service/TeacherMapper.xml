@@ -10,4 +10,14 @@
         ( #{i.name}, #{i.email}, #{i.password}, #{i.subNum}, #{i.profileImg} )
   	</foreach>
 </insert>
+<insert id="insert" parameterType="com.example.demo.sym.service.Teacher">
+	insert into managers (email, password, name, profile_img)
+	values (#{email}, #{password}, #{name}, #{profileImg})
+</insert>
+<select id="access" resultType="com.example.demo.sym.service.Teacher"
+				   parameterType="com.example.demo.sym.service.Teacher">
+    select tea_num teaNum, name, email, password, sub_num subNum, profile_img profileImg
+    from teachers 
+    where email like #{email} and password like #{password}
+</select>
 </mapper>

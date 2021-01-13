@@ -53,32 +53,33 @@
         #{i.stuNum}, #{i.examDate} )
   	</foreach>
 </insert>
-<select id="selectJoinAll" resultMap="gradeMap">
-	select 
-		g.grade_num gradeNum, 
-		g.score score,
-		g.grade grade,
-		g.exam_date examDate,
-		g.pass_exam passExam,
-		j.sub_num subNum,
-		t.tea_num teaNum,
-		t.email teaEmail,
-		t.password teaPassword,
-		j.description description,
-		t.profile_img teaProfileImg,
-		t.name teaName,
-		s.userid userid,
-		s.password stuPassword,
-		s.name stuName,
-		s.birthday birthday,
-		s.gender gender,
-		s.reg_date regDate,
-		s.profile_img stuProfileImg,
-		s.stu_num stuNum,
-		s.sub_num subNum
-	from students s
-		join teachers t on s.sub_num like t.sub_num
-		join subjects j on s.sub_num like j.sub_num
-		join grades g on s.sub_num like g.sub_num
+<select id="selectJoinAll" resultMap="gradeMap" parameterType="string">
+	select count(t.tea_num) count,
+		   a.*, 
+		   t.tea_num teaNum, 
+		   t.name teaName, 
+		   t.email teaEmail, 
+		   t.password teaPassword, 
+		   t.profile_img teaProfileImg	
+	from (select 
+			g.grd_num grdNum, 
+			g.score score,
+			g.grade grade,
+			g.exam_date examDate,
+			j.sub_num subNum,
+			j.description description,
+			s.userid userid,
+			s.password stuPassword,
+			s.name stuName,
+			s.birthday birthday,
+			s.gender gender,
+			s.reg_date regDate,
+			s.profile_img stuProfileImg,
+			s.stu_num stuNum
+		from grades g
+			join subjects j on j.sub_num = g.sub_num
+			join students s on s.stu_num = g.stu_num) a
+		join teachers t on t.sub_num = a.subNum
+		where a.examDate like #{value}
 </select>
 </mapper>

@@ -11,6 +11,7 @@
 <script src="${stu}/js/stu.js"></script>
 <script src="${cmm}/js/cmm.js"></script>
 <script src="${sts}/js/grd.js"></script>
+<script src="${tea}/js/tea.js"></script>
 </head>
 
 <!-- 
