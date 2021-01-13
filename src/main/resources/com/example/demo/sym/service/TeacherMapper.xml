@@ -4,10 +4,10 @@
 <mapper namespace="com.example.demo.sym.service.TeacherMapper">
 <insert id="insertMany" parameterType="list">
 	insert into teachers
-	( name, email, password, subject, profile_img )
+	( name, email, password, sub_num, profile_img )
 	values 
 	 <foreach item="i" collection="list" separator=",">
-        ( #{i.name}, #{i.email}, #{i.password}, #{i.subject}, #{i.profileImg} )
+        ( #{i.name}, #{i.email}, #{i.password}, #{i.subNum}, #{i.profileImg} )
   	</foreach>
 </insert>
 </mapper>

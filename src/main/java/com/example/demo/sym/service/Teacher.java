@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Teacher{
-    private String teaNum, name, email, password, subject, profileImg;
-    public Teacher(String name, String email, String password, String subject, String profileImg) {
+	private int teaNum, subNum;
+    private String name, email, password, profileImg;
+    public Teacher(String name, String email, String password, String profileImg, int subNum) {
     	this.name = name;
     	this.email = email;
     	this.password = password;
-    	this.subject = subject;
     	this.profileImg = profileImg;
+    	this.subNum = subNum;
     }
 }
 /*

@@ -124,7 +124,11 @@ public class DummyGenerator {
 		 Collections.shuffle(ls);
 		 return ls.get(0);
 	}
-		
+	public int makeSubNum() {
+		List<Integer> ls = Arrays.asList(1, 2, 3, 4, 5);
+		 Collections.shuffle(ls);
+		 return ls.get(0);
+	}
 	public String makeEmail() {
 		List<String> ls = Arrays.asList("@test.com","@gmail.com","@naver.com");
 		Collections.shuffle(ls);
@@ -132,16 +136,14 @@ public class DummyGenerator {
 	}
 
 	public Student makeStudent() {
-		return new Student(0,
-				makeUserid(), 
+		return new Student(makeUserid(), 
 				"1", 
 				makeUsername(), 
 				makeBirthday(), 
 				makeGender(),
 				makeRegdate(),
-				makeSubject(),
-				Path.DEFAULT_PROTFILE.toString()
-				);
+				Path.DEFAULT_PROTFILE.toString(),
+				1);
 	}
 
 	/*************************************
@@ -152,8 +154,8 @@ public class DummyGenerator {
 				.limit(1).map(i -> (int)(i * 100))
 				.collect(Collectors.toList());
 	}
-	public Grade makeGrade() {
-		return new Grade(makeSubject(), makeExamdate(), makeScore().get(0));
+	public Grade makeGrade(int stuNum) {
+		return new Grade(stuNum, makeSubNum(), makeExamdate(), makeScore().get(0));
 	}
 	public String makeExamdate() {
 		return "2020-11-30";
@@ -163,12 +165,12 @@ public class DummyGenerator {
 	 * Teacher Dummy Data Generator
 	 *************************************/
 	public Teacher makeTeacher() {
-		return new Teacher("", 
+		return new Teacher(
 				makeUsername(), 
 				makeEmail(),
 				"1", 
-				"", 
-				Path.DEFAULT_PROTFILE.toString()
+				Path.DEFAULT_PROTFILE.toString(),
+				makeSubNum()
 				);
 	}
 	

@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.cmm.enm.Messenger;
+import com.example.demo.cmm.enm.Sql;
 import com.example.demo.cmm.enm.Table;
 import com.example.demo.cmm.service.CommonMapper;
 import com.example.demo.cmm.utl.Pagination;
 import com.example.demo.sts.service.GradeService;
 import com.example.demo.sts.service.SubjectService;
+import com.example.demo.sym.service.ManagerService;
 import com.example.demo.sym.service.TeacherService;
 import com.example.demo.uss.service.Student;
 import com.example.demo.uss.service.StudentMapper;
@@ -39,6 +40,7 @@ public class StudentController {
     @Autowired GradeService gradeService;
     @Autowired SubjectService subjectService;
     @Autowired TeacherService teacherService;
+    @Autowired ManagerService managerService;
     @PostMapping("")
     public Messenger register(@RequestBody Student student){
         logger.info("등록하려는 학생 정보: "+student.toString());
@@ -54,25 +56,31 @@ public class StudentController {
         logger.info("로그인 성공 정보: "+student.toString());
         return map;
     }
-    @GetMapping("/truncate")
-    public Messenger truncate(){
-    	logger.info("=========== Students Truncated Execute..");
-    	return studentService.truncate() == 1 ? Messenger.SUCCESS : Messenger.FAILURE;
-    }
+
 
     @GetMapping("/insert-many/{count}")
     public String insertMany(@PathVariable String count){
     	logger.info(String.format("=========== Insert %s Students..", count));
-    	gradeService.insertMany(Integer.parseInt(count));
-    	subjectService.insertMany();
-    	teacherService.insertMany();
-    	return string.apply(studentService.insertMany(Integer.parseInt(count)));
+    	var map = new HashMap<String, String>();
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString()+Table.STUDENTS);
+    	if(commonMapper.totalCount(map) == 0) {
+    		managerService.insertMany(1);
+        	subjectService.insertMany();
+        	studentService.insertMany(Integer.parseInt(count));
+        	teacherService.insertMany(5);
+        	// gradeService.insertMany(Integer.parseInt(count));
+    	}
+    	map.clear();
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString()+Table.STUDENTS);
+    	return string.apply(commonMapper.totalCount(map));
     }
     
     @GetMapping("/count")
     public String count(){
     	logger.info("=========== Count Students..");
-    	return string.apply(commonMapper.count(Table.STUDENTS.toString()));
+    	var map = new HashMap<String, Object>();
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString() + Table.STUDENTS);	
+    	return string.apply(commonMapper.totalCount(map));
     }
     
     @GetMapping("/find-by-gender")
@@ -92,11 +100,14 @@ public class StudentController {
     					@PathVariable String pageNum){
     	logger.info("Students List Execute ...");
     	var map = new HashMap<String, Object>();
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString() + Table.STUDENTS);	
     	var page = new Pagination(
 				Table.STUDENTS.toString(), 
 				integer.apply(pageSize),
 				integer.apply(pageNum),
-				commonMapper.count(Table.STUDENTS.toString()));
+				commonMapper.totalCount(map))
+				;
+    	map.clear();
     	map.put("list", studentService.list(page));
     	map.put("page", page);
         return map;
@@ -106,13 +117,16 @@ public class StudentController {
     public List<?> selectAll(@PathVariable String pageSize, 
     					@PathVariable String pageNum){
     	logger.info("Students List Execute ...");
+    	var map = new HashMap<String, Object>();
+    	map.put("TOTAL_COUNT", Sql.TOTAL_COUNT.toString() + Table.STUDENTS);	
         return studentMapper.selectAll(new Pagination(
 				Table.STUDENTS.toString(), 
 				integer.apply(pageSize),
 				integer.apply(pageNum),
-				commonMapper.count(Table.STUDENTS.toString())));
+				commonMapper.totalCount(map)));
     }
     
+    /*
     @GetMapping("/page/{pageSize}/{pageNum}/birthday")
     public Map<?, ?> selectBirthday(@PathVariable String pageSize, 
 				@PathVariable String pageNum){
@@ -122,11 +136,11 @@ public class StudentController {
 			Table.STUDENTS.toString(), 
 			integer.apply(pageSize),
 			integer.apply(pageNum),
-			commonMapper.count(Table.STUDENTS.toString()));
+			commonMapper.totalCount(Table.STUDENTS.toString()));
 		map.put("list", studentService.selectBirthday(page));
 		map.put("page", page);
 		return map;
-	}
+	}*/
     
     @PutMapping("")
     public Messenger update(@RequestBody Student student){

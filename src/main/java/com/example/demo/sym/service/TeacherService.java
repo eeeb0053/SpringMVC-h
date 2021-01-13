@@ -15,13 +15,11 @@ public class TeacherService{
     @Autowired TeacherMapper teacherMapper;
     @Autowired DummyGenerator dummy;
     
-    public void  insertMany() {
-    	var list = Arrays.asList("Java","Spring","Python","jQuery","eGovframe");
+    public void  insertMany(int count) {
     	var tlist = new ArrayList<Teacher>();
     	Teacher t = null;
-    	for(int i = 0; i < list.size(); i++) {
+    	for(int i = 0; i < count; i++) {
     		t = dummy.makeTeacher();
-    		t.setSubject(list.get(i));
     		tlist.add(t);
     	}
     	teacherMapper.insertMany(tlist);

@@ -3,9 +3,6 @@ var stu = stu || {}
 stu.insertMany = x => {
 	$.getJSON(`${x}/students/insert-many/${$('#stu-data-count').val()}`, 
 			d => { location.reload();})}
-stu.truncate = x => {
-	$.getJSON(`${x}/students/truncate`,
-	 		d => { location.reload()})}
 stu.count = x => {
 	$.getJSON(`${x}/students/count`, 
 			d => { $(`#stu-count`).text(d)})}
@@ -20,7 +17,7 @@ stu.list = x => {
 		.css({width: `100%`})
 		.appendTo(`#title`) 
 		$(`<tr/>`).attr({id: `tr_1`}).appendTo(`#tab`)
-		$.each([`No`,`아이디`,`이름`,`생년월일`,`성별`,`등록일`,`전공과목`], 
+		$.each([`No`,`아이디`,`이름`,`생년월일`,`성별`,`등록일`, `담당매니저`], 
 		    (i, j) => {
 			$(`<th>${j}</th>`).css({backgroundColor: `#bfb6b6`, fontSize: `Medium`})
 			.appendTo(`#tr_1`)
@@ -33,7 +30,7 @@ stu.list = x => {
 						<td>${j.birthday}</td>
 						<td>${j.gender}</td>
 						<td>${j.regDate}</td>
-						<td>${j.subject}</td></tr>`)
+						<td>${j.mgrNum}</td></tr>`)
 						.css({padding: `15px`, textAlign: `left`, fontSize: `small`})
 						.appendTo(`#tab`)
 		})

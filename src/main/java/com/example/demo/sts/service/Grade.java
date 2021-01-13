@@ -13,11 +13,11 @@ import lombok.Setter;
 
 @Getter @Setter @Component @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Grade{
-    private String subject, grade, examDate, passExam;
-    private int stuNum, score, grdNum;
-    
-    public Grade(String subject, String examDate, int score) {
-    	this.subject = subject;
+    private String grade, examDate, passExam;
+    private int stuNum, score, grdNum, subNum;
+    public Grade(int stuNum, int subNum, String examDate, int score) {
+    	this.stuNum = stuNum;
+    	this.subNum = subNum;
     	this.examDate = examDate;
     	this.score = score;
     }

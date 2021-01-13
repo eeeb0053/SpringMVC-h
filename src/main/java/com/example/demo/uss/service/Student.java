@@ -9,8 +9,19 @@ import lombok.NoArgsConstructor;
 
 @Component @Data @AllArgsConstructor @Lazy @NoArgsConstructor
 public class Student{
-	private int stuNum;
-    private String userid, password, name, birthday, gender, regDate, subject, profileImg;
+	private int stuNum, mgrNum;
+    private String userid, password, name, birthday, gender, regDate, profileImg;
+    public Student(String userid, String password, String name, String birthday,
+    			   String gender, String regDate, String profileImg, int mgrNum) {
+    	this.userid = userid;
+    	this.password = password;
+    	this.name = name;
+    	this.birthday = birthday;
+    	this.gender = gender;
+    	this.regDate = regDate;
+    	this.profileImg = profileImg;
+    	this.mgrNum = mgrNum;
+    }
 }
 /*
 create table students(

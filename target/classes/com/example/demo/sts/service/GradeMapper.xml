@@ -39,10 +39,10 @@
 </resultMap>
 <insert id="insertMany" parameterType="list">
 	insert into grades
-	( subject, score, stu_num, exam_date )
+	( sub_num, score, stu_num, exam_date )
 	values 
 	 <foreach item="i" collection="list" separator=",">
-        ( #{i.subject}, #{i.score}, 
+        ( #{i.subNum}, #{i.score}, 
         #{i.stuNum}, #{i.examDate} )
   	</foreach>
 </insert>
@@ -68,10 +68,10 @@
 		s.reg_date regDate,
 		s.profile_img stuProfileImg,
 		s.stu_num stuNum,
-		s.subject subject
+		s.sub_num subNum
 	from students s
-		join teachers t on s.subject like t.subject
-		join subjects j on s.subject like j.subject
-		join grades g on s.subject like g.subject
+		join teachers t on s.sub_num like t.sub_num
+		join subjects j on s.sub_num like j.sub_num
+		join grades g on s.sub_num like g.sub_num
 </select>
 </mapper>

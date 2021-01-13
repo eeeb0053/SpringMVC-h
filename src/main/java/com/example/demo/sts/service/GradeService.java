@@ -19,7 +19,7 @@ public class GradeService{
     	Grade g = null;
     	
     	for(int i = 0; i < 100; i++) {
-    		g = dummy.makeGrade();
+    		g = dummy.makeGrade(i+1);
     		g.setStuNum(i);
     		list.add(g);
     	}
