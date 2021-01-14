@@ -18,10 +18,11 @@ public class TeacherService{
     
     @Transactional
     public void  insertMany(int count) {
+    	// teacher 는 subject 5 까지만 입력
     	var tlist = new ArrayList<Teacher>();
     	Teacher t = null;
     	for(int i = 0; i < count; i++) {
-    		t = dummy.makeTeacher();
+    		t = dummy.makeTeacher(i+1);
     		tlist.add(t);
     	}
     	teacherMapper.insertMany(tlist);

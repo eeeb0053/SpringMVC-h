@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.cmm.utl.DummyGenerator;
+import com.example.demo.cmm.utl.Inventory;
 
 @Service
 public class SubjectService {
     @Autowired SubjectMapper subjectMapper;
     @Autowired DummyGenerator dummy;
+    @Autowired Inventory<Subject> ls;
     
     public void  insertMany() {
     	var l1 = Arrays.asList("Java","Spring","Python","jQuery","eGovframe");

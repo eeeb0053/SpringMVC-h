@@ -164,14 +164,14 @@ public class DummyGenerator {
 	/*************************************
 	 * Teacher Dummy Data Generator
 	 *************************************/
-	public Teacher makeTeacher() {
+	public Teacher makeTeacher(int i) {
 		return new Teacher(
 				makeUsername(), 
 				makeEmail(),
-				"1", 
+				"1", // 비밀번호
 				Path.DEFAULT_PROTFILE.toString(),
-				makeSubNum()
-				);
+				i //makeTeacher() 를  1 ~ 5 까지만 생성하기 위함
+				); 
 	}
 	
 	/*************************************

@@ -60,4 +60,5 @@ public class GradeController {
 		return (commonMapper.totalCount(map) != 0) ? Messenger.SUCCESS : Messenger.FAILURE;
 	}
     
+    
 }

@@ -1,5 +1,7 @@
 package com.example.demo.cmm.utl;
 
+import static com.example.demo.cmm.utl.Util.integer;
+
 import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -24,4 +26,5 @@ public class Util {
 	public static Supplier<LocalTime> time = () -> LocalTime.now();
 	public static BiFunction<String,String,File> mkDir = File::new;
 	public static BiFunction<File,String, File> mkFile = File::new;
+	public static BiFunction<String, String, Integer> mySkip = (t, u) -> (integer.apply(t) - 1) * integer.apply(u);
 }

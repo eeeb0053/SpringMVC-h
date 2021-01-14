@@ -15,7 +15,7 @@
     private String userid, stuPassword, stuName, birthday, gender, regDate, stuProfileImg; 
 -->
 <resultMap type="com.example.demo.sts.service.GradeVo" id="gradeMap">
-	<id property="gradeNum" column="gradeNum"/>
+	<id property="grdNum" column="grdNum"/>
 	<result property="score" column="score"/>
 	<result property="stuNum" column="stuNum"/>
 	<result property="subject" column="subject"/>

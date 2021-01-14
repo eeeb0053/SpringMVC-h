@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SubjectMapper {
 	public int insertMany(List<Subject> list);
+	public List<String> selectAllSubject();
 }

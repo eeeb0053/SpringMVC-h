@@ -73,7 +73,7 @@ span.psw {
 
   <div class="container">
     <label for="uname"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" id="tid" value="kdVc@naver.com" required>
+    <input type="text" placeholder="Enter Email" id="tid" value="ZfSi@test.com" required>
 
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" id="tpwd" value="1" required>

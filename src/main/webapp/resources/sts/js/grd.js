@@ -8,9 +8,9 @@ grd.register_form = x => {
       <form id="grd-register-form">
         <h2>성적 등록</h2>
         <div class="info">
-          <input class="fname" type="text" name="name" placeholder="Full name">
-          <input type="text" name="name" placeholder="Email">
-          <input type="text" name="name" placeholder="Phone number">
+          <input class="fname" type="text" name="name" placeholder="Full name"><br/>
+          <input type="text" name="name" placeholder="Email"><br/>
+          <input type="text" name="name" placeholder="Phone number"><br/>
           <input type="text" name="name" placeholder="Website">
         </div>
         <p>Message</p>
@@ -28,4 +28,5 @@ grd.register_form = x => {
 			location.href = `${x}/grades/index`
 		})
 	})
-	}
+}
+	
